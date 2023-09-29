@@ -1,0 +1,57 @@
+import random
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.score = 0
+
+def ask_question(question, options, correct_option):
+    print(question)
+    for i, option in enumerate(options, 1):
+        print(f"{i}. {option}")
+
+    choice = int(input("Enter your choice (1/2/3/4): "))
+    if choice == correct_option:
+        print("Correct!")
+        return True
+    else:
+        print("Incorrect!")
+        return False
+
+def challenge_round(player):
+    # Implement a challenge scenario and award points based on the player's response.
+    pass
+
+def strategy_round(player):
+    # Implement a strategy scenario and award points based on the player's strategy.
+    pass
+
+def main():
+    print("Welcome to the Health & Sustainability Challenge!")
+    num_players = int(input("Enter the number of players: "))
+    players = [Player(input(f"Enter name for Player {i+1}: ")) for i in range(num_players)]
+
+    # Game rounds
+    for _ in range(5):  # 5 rounds
+        for player in players:
+            print(f"{player.name}'s turn:")
+            question = "What is the Sustainable Development Goal #3 about?"
+            options = ["Ending poverty", "Quality education", "Good health and well-being", "Clean water"]
+            correct_option = 3
+            if ask_question(question, options, correct_option):
+                player.score += 10
+
+            challenge_round(player)  # Implement challenge rounds
+            strategy_round(player)  # Implement strategy rounds
+
+    # Calculate and display the final scores
+    print("\nFinal Scores:")
+    for player in players:
+        print(f"{player.name}: {player.score} points")
+
+    # Determine the winner
+    winner = max(players, key=lambda x: x.score)
+    print(f"\n{winner.name} wins!")
+
+if __name__ == "__main__":
+    main()
