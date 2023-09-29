@@ -1,0 +1,45 @@
+import random
+
+# Define player class
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.points = 0
+
+    def add_points(self, points):
+        self.points += points
+
+# Define a function for each game section
+def access_to_healthcare(player):
+    print(f"{player.name}, welcome to the Access to Healthcare challenge!")
+    # Implement your game logic here for this section
+    # Example: Ask questions, present scenarios, and update player points accordingly
+
+def nutrition_and_hydration(player):
+    print(f"{player.name}, it's time to manage nutrition and hydration!")
+    # Implement your game logic here for this section
+
+def mental_health_and_wellness(player):
+    print(f"{player.name}, focus on mental health and wellness.")
+    # Implement your game logic here for this section
+
+# Create players
+players = []
+num_players = int(input("Enter the number of players: "))
+
+for i in range(num_players):
+    player_name = input(f"Enter the name for Player {i+1}: ")
+    players.append(Player(player_name))
+
+# Main game loop
+while True:
+    for player in players:
+        print(f"\n{player.name}'s turn:")
+        section_choice = random.choice([access_to_healthcare, nutrition_and_hydration, mental_health_and_wellness])
+        section_choice(player)
+        
+        print(f"{player.name}'s total points: {player.points}")
+        
+        play_again = input(f"{player.name}, do you want to play another turn? (yes/no): ").lower()
+        if play_again != 'yes':
+            exit()
